@@ -36,15 +36,7 @@ export default function RootLayout({
   console.log(isLoggedIn);
   if (!isLoggedIn) {
     router.replace('/auth/login');
-    return (
-      <html lang="en">
-        <body className={inter.className} suppressHydrationWarning={true}>
-          <LoginPage />
-        </body>
-      </html>);
   }
-
-
   return (
     <html lang="en">
       <body className={inter.className} suppressHydrationWarning={true}>
@@ -57,7 +49,7 @@ export default function RootLayout({
             <Sidebar show={showSidebar} setter={setShowSidebar} />
           </div>
           <div className="w-full us:mt-[60px] md:mt-0 ">
-            {children}
+          {isLoggedIn?children:<LoginPage />}
           </div>
         </div>
       </body>
