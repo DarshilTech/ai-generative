@@ -10,6 +10,7 @@ import { userValidate } from "./auth/userValidate";
 import LoginPage from "./auth/login/page";
 import { Toaster } from "react-hot-toast";
 import { ToastContainer } from 'react-toastify';
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import Sidebar from './sidebar/Sidebar';
 import MenuBarMobile from './sidebar/MenuBarMobile';
 import React, { useState, useEffect } from 'react'
@@ -42,6 +43,7 @@ export default function RootLayout({
       <body className={inter.className} suppressHydrationWarning={true}>
         <Toaster position="top-center" />
         <ToastContainer />
+        <SpeedInsights />
         <div className="flex us:flex-col md:flex-row">
           <div className="md:block w-max">
             {/* if you want to add navbar then please add here it component */}
