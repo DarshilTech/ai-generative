@@ -7,7 +7,7 @@ import logo from '../../../public/1.png'
 
 export default function MenuBarMobile({ setter }:{setter: React.Dispatch<React.SetStateAction<boolean>>}) {
     return (
-        <nav className="md:hidden z-20 fixed top-0 left-0 right-0 h-[60px] us:w-[27%] bg-black flex [&>*]:my-auto px-2">
+        <nav className="md:hidden z-20 fixed top-0 left-0 right-0 h-[60px] bg-black flex [&>*]:my-auto px-2">
             <button
                 className="text-4xl flex text-white"
                 onClick={() => {
