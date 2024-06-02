@@ -1,8 +1,6 @@
-require('canvas');
 const fabric = require("fabric").fabric;
 import { toast } from 'react-toastify';
-// const alpinejs = require('alpinejs').Alpine;
-import React from 'react';
+import React, { use } from 'react';
 
 var canvas: any = '';
 const loadCanvas = () => {
