@@ -14,6 +14,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import Sidebar from './sidebar/Sidebar';
 import MenuBarMobile from './sidebar/MenuBarMobile';
 import React, { useState, useEffect } from 'react'
+import Loader from "./loader";
 // import Alpine from 'alpinejs';
 
 const inter = Inter({ subsets: ["latin"] });
@@ -35,6 +36,7 @@ export default function RootLayout({
   const isLoggedIn: boolean = userValidate();
   const router: any = useRouter();
   console.log(isLoggedIn);
+ 
   if (!isLoggedIn) {
     // router.push('/auth/login');
   }
@@ -52,6 +54,7 @@ export default function RootLayout({
           </div>
           <div className="w-full us:mt-[60px] md:mt-0 ">
             {/* {isLoggedIn ? children : <LoginPage />} */}
+            {/* {loading && <Loader />} */}
             {children}
           </div>
         </div>

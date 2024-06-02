@@ -4,14 +4,26 @@ import React, { use } from 'react';
 
 var canvas: any = '';
 const loadCanvas = () => {
+  var fabricwidth: any,
+    fabricheight: any;
+  if (window.innerWidth <= 768) {
+    fabricwidth = window.innerWidth - 80;
+    fabricheight = window.innerHeight - 250;
+  } else if (window.innerWidth < 1024) {
+    fabricwidth = window.innerWidth - 300;
+    fabricheight = window.innerHeight - 150;
+  } else {
+    fabricwidth = window.innerWidth - 630;
+    fabricheight = window.innerHeight > 800 ? window.innerHeight - 200 : window.innerHeight;
+  }
   if (!canvas) {
     canvas = new fabric.Canvas('canvas', {
       // Name of the wrapper class to be used on the canvas
       containerClass: "border",
       // Width of the canvas
-      width: 1200,
+      width: fabricwidth,
       // Height of the canvas
-      height: 500,
+      height: fabricheight,
     });
   }
 }
@@ -168,7 +180,7 @@ export default function Main({ reset }: { reset: any }) {
       <div className="w-full flex justify-center items-center" >
         <canvas id="canvas" />
       </div>
-      <div className="flex gap-2 mt-2 justify-center">
+      <div className="flex gap-2 mt-2 justify-center flex-wrap">
         <button className="border p-1 hover:bg-[#0E122D] transition-all ease-in delay-75" type="button" onClick={Addtextbox}>Add text Box</button>
         <input type="file" name="file" id="file" className="border p-1 hover:bg-[#0E122D] transition-all ease-in delay-75" onChange={fiePutOnCanvas} />
         <button className="border p-1 hover:bg-[#0E122D] transition-all ease-in delay-75" type="button" onClick={downloadImage}>Download Image</button>
