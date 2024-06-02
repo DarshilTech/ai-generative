@@ -1,15 +1,15 @@
 "use client";
 
+import "./globals.css";
+import 'react-toastify/dist/ReactToastify.css';
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Suspense } from 'react';
 import { useRouter } from "next/navigation";
 import { userValidate } from "./auth/userValidate";
 import LoginPage from "./auth/login/page";
-import "./globals.css";
-import Navbar from "./Navbar";
 import { Toaster } from "react-hot-toast";
 import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Sidebar from './sidebar/Sidebar';
 import MenuBarMobile from './sidebar/MenuBarMobile';
 import React, { useState, useEffect } from 'react'
@@ -35,7 +35,7 @@ export default function RootLayout({
   const router: any = useRouter();
   console.log(isLoggedIn);
   if (!isLoggedIn) {
-    router.replace('/auth/login');
+    // router.push('/auth/login');
   }
   return (
     <html lang="en">
@@ -44,12 +44,13 @@ export default function RootLayout({
         <ToastContainer />
         <div className="flex us:flex-col md:flex-row">
           <div className="md:block w-max">
-            {/* <Navbar /> */}
+            {/* if you want to add navbar then please add here it component */}
             <MenuBarMobile setter={setShowSidebar} />
             <Sidebar show={showSidebar} setter={setShowSidebar} />
           </div>
           <div className="w-full us:mt-[60px] md:mt-0 ">
-          {isLoggedIn?children:<LoginPage />}
+            {/* {isLoggedIn ? children : <LoginPage />} */}
+            {children}
           </div>
         </div>
       </body>

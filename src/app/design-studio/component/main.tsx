@@ -1,4 +1,4 @@
-// const { createCanvas } = require('canvas');
+require('canvas');
 const fabric = require("fabric").fabric;
 import { toast } from 'react-toastify';
 // const alpinejs = require('alpinejs').Alpine;
