@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import Container from "./component/Container";
+import ContactData from "@/components/Contact";
 
 export default function Contact() {
   
   return (
-        <Container/>
+    <ContactData />
   );
 }

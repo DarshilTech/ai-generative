@@ -5,14 +5,15 @@ import 'react-toastify/dist/ReactToastify.css';
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Suspense } from 'react';
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import Prefooter from "@/components/Prefooter";
 import { useRouter } from "next/navigation";
 import { userValidate } from "./auth/userValidate";
 import LoginPage from "./auth/login/page";
 import { Toaster } from "react-hot-toast";
 import { ToastContainer } from 'react-toastify';
 import { SpeedInsights } from "@vercel/speed-insights/next"
-import Sidebar from './sidebar/Sidebar';
-import MenuBarMobile from './sidebar/MenuBarMobile';
 import React, { useState, useEffect } from 'react'
 import Loader from "./loader";
 // import Alpine from 'alpinejs';
@@ -36,27 +37,23 @@ export default function RootLayout({
   const isLoggedIn: boolean = userValidate();
   const router: any = useRouter();
   console.log(isLoggedIn);
- 
+
   if (!isLoggedIn) {
     // router.push('/auth/login');
   }
   return (
     <html lang="en">
+      <meta name="robots" content="follow, index" />
       <body className={inter.className} suppressHydrationWarning={true}>
         <Toaster position="top-center" />
         <ToastContainer />
         <SpeedInsights />
-        <div className="flex us:flex-col md:flex-row">
-          <div className="md:block w-max">
-            {/* if you want to add navbar then please add here it component */}
-            <MenuBarMobile setter={setShowSidebar} />
-            <Sidebar show={showSidebar} setter={setShowSidebar} />
-          </div>
-          <div className="w-full us:mt-[60px] md:mt-0 ">
-            {/* {isLoggedIn ? children : <LoginPage />} */}
-            {/* {loading && <Loader />} */}
+        <div className="min-h-screen flex flex-col">
+          <Navbar />
+          <main className="flex-grow mt-[64px]">
             {children}
-          </div>
+          </main>
+          <Footer />
         </div>
       </body>
     </html>
