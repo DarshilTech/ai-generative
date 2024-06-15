@@ -1,11 +1,12 @@
 "use client";
-import Main from "./component/main";
-export default function Studio(){
+import Studio from "@/components/Studio";
+import StudioObject from "@/components/StudioObject";
+export default function Page(){
     
     return (
-        <div className="w-full p-4 bg-neutral-900 text-neutral-300 dark:text-neutral-400 border-b">
-            <h1 className="flex text-center justify-center font-semibold text-2xl underline m-4">My Studio</h1>
-            <Main reset={true}/>
+        <div className="w-full flex flex-row p-4 bg-neutral-900 text-neutral-300 dark:text-neutral-400 border-b">
+            <StudioObject/>
+            <Studio reset={true}/>
         </div>
     );
 }

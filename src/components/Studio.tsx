@@ -1,25 +1,28 @@
 const fabric = require("fabric").fabric;
 import { toast } from 'react-toastify';
 import React, { use } from 'react';
+import exp from 'constants';
 
 var canvas: any = '';
 const loadCanvas = () => {
   var fabricwidth: any,
     fabricheight: any;
-  if (window.innerWidth <= 768) {
-    fabricwidth = window.innerWidth - 80;
-    fabricheight = window.innerHeight - 250;
-  } else if (window.innerWidth < 1024) {
-    fabricwidth = window.innerWidth - 300;
-    fabricheight = window.innerHeight - 150;
-  } else {
-    fabricwidth = window.innerWidth - 630;
-    fabricheight = window.innerHeight > 800 ? window.innerHeight - 200 : window.innerHeight;
+  if (typeof window !== "undefined") {
+    if (window.innerWidth <= 768) {
+      fabricwidth = window.innerWidth - 80;
+      fabricheight = window.innerHeight - 250;
+    } else if (window.innerWidth < 1024) {
+      fabricwidth = window.innerWidth - 300;
+      fabricheight = window.innerHeight - 150;
+    } else {
+      fabricwidth = window.innerWidth - 630;
+      fabricheight = window.innerHeight > 800 ? window.innerHeight - 200 : window.innerHeight;
+    }
   }
   if (!canvas) {
     canvas = new fabric.Canvas('canvas', {
       // Name of the wrapper class to be used on the canvas
-      containerClass: "border",
+      containerClass: "border bg-white border-gray-300 shadow-lg rounded-lg w-full h-full",
       // Width of the canvas
       width: fabricwidth,
       // Height of the canvas
@@ -32,16 +35,20 @@ function keyEvent(event: any) {
     deleteObject();
   }
 }
-const Addtextbox = () => {
-  const text = new fabric.IText('Tap and Type', {
+const Addtextbox = (arg: string) => {
+  arg = arg ? arg : 'Tap and Type';
+  const text = new fabric.IText(arg, {
     left: 50,
     top: 100,
-    fill: 'red'
+    fill: 'black'
   });
   canvas.add(text);
   canvas.setActiveObject(text);
   canvas.renderAll();
   canvasOnload();
+}
+function getCanvas(){
+  return canvas;
 }
 const handleClick = () => {
   console.log('testss')
@@ -167,7 +174,7 @@ function objectOutOfCanvasDisplayAlert(obj: any) {
     return false;
   }
 }
-export default function Main({ reset }: { reset: any }) {
+export default function Studio({ reset }: { reset: any }) {
   if (reset) {
     canvas = '';
   }
@@ -181,7 +188,7 @@ export default function Main({ reset }: { reset: any }) {
         <canvas id="canvas" />
       </div>
       <div className="flex gap-2 mt-2 justify-center flex-wrap">
-        <button className="border p-1 hover:bg-[#0E122D] transition-all ease-in delay-75" type="button" onClick={Addtextbox}>Add text Box</button>
+        <button className="border p-1 hover:bg-[#0E122D] transition-all ease-in delay-75" type="button" onClick={()=>Addtextbox('Tap and Type')}>Add text Box</button>
         <input type="file" name="file" id="file" className="border p-1 hover:bg-[#0E122D] transition-all ease-in delay-75" onChange={fiePutOnCanvas} />
         <button className="border p-1 hover:bg-[#0E122D] transition-all ease-in delay-75" type="button" onClick={downloadImage}>Download Image</button>
         <button className="border p-1 hover:bg-[#0E122D] transition-all ease-in delay-75" type="button" onClick={deleteObject}>Delete!</button>
@@ -189,3 +196,5 @@ export default function Main({ reset }: { reset: any }) {
     </div>
   )
 }
+export { Addtextbox };
+export { getCanvas };
